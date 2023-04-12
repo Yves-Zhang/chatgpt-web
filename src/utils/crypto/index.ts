@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js'
 
-const CryptoSecret = '__CRYPTO_SECRET__'
+const CryptoSecret = CryptoJS.SHA256('salt_987654321_password').toString()
 
 export function enCrypto(data: any) {
   const str = JSON.stringify(data)
