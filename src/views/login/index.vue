@@ -3,10 +3,12 @@ import { computed, ref } from 'vue'
 import {
   NButton, NCheckbox, NInput, NSpace, useMessage,
 } from 'naive-ui'
-import { fetchVerify } from '@/api'
+// import { fetchVerify } from '@/api'
 import { useAuthStore } from '@/store'
 // 使用import语句导入SVG文件
 import ChatIcon from '@/assets/chat.svg'
+import { enCrypto } from '@/utils/crypto'
+import { fetchLogin } from '@/api'
 
 const authStore = useAuthStore()
 
@@ -27,10 +29,15 @@ async function handleVerify() {
 
   try {
     loading.value = true
-    await fetchVerify(secretKey)
-    authStore.setToken(secretKey)
-    ms.success('success')
-    window.location.reload()
+    // 先对 密钥 加密
+    const encodeKey = enCrypto(secretKey)
+    const res = await fetchLogin({ key: encodeKey })
+    // console.log(res, 999)
+
+    // await fetchVerify(secretKey)
+    // authStore.setToken(secretKey)
+    // ms.success('success')
+    // window.location.reload()
   }
   catch (error: any) {
     ms.error(error.message ?? 'error')

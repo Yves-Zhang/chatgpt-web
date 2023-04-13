@@ -4,6 +4,7 @@ import type { ChatMessage } from './chatgpt'
 import { chatConfig, chatReplyProcess, currentModel } from './chatgpt'
 import { auth } from './middleware/auth'
 import { limiter } from './middleware/limiter'
+import { decrypt } from './middleware/decrypt'
 import { isNotEmptyString } from './utils/is'
 
 const app = express()
@@ -55,6 +56,20 @@ router.post('/config', auth, async (req, res) => {
 
 router.post('/session', async (req, res) => {
   try {
+    const { key } = req.body
+    const AUTH_SECRET_KEY = process.env.AUTH_SECRET_KEY
+    const hasAuth = isNotEmptyString(AUTH_SECRET_KEY)
+    res.send({ status: 'Success', message: '', data: { auth: hasAuth, model: currentModel() } })
+  }
+  catch (error) {
+    res.send({ status: 'Fail', message: error.message, data: null })
+  }
+})
+
+router.post('/login', decrypt, async (req, res) => {
+  try {
+    const { key } = req.body
+    // console.log(key, 7777)
     const AUTH_SECRET_KEY = process.env.AUTH_SECRET_KEY
     const hasAuth = isNotEmptyString(AUTH_SECRET_KEY)
     res.send({ status: 'Success', message: '', data: { auth: hasAuth, model: currentModel() } })
