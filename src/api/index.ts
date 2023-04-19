@@ -38,7 +38,7 @@ export function fetchChatAPIProcess<T = any>(
   })
 }
 
-export function fetchSession<T>(params: any) {
+export function fetchSession<T>(params?: any) {
   return post<T>({
     url: '/session',
     data: { ...params },

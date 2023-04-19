@@ -28,7 +28,10 @@ export const useAuthStore = defineStore('auth-store', {
   actions: {
     async getSession() {
       try {
-        const { data } = await fetchSession<SessionResponse>()
+        const data: any = await fetchSession<SessionResponse>()
+        if (data.code !== 0)
+          return Promise.reject(new Error('没有权限'))
+
         this.session = { ...data }
         return Promise.resolve(data)
       }
