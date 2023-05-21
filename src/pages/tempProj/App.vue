@@ -11,11 +11,12 @@ import { ref } from "vue";
 import "./app.scss";
 
 export default {
-  steup() {
+  setup() {
     const title = ref("hello")
     const count = ref(0)
 
-    const handleClick = ()=>{
+    const handleClick = () => {
+      count.value++
     }
 
     return {
