@@ -1,11 +1,4 @@
-/*
- * @Author: yvesyfzhang
- * @Date: 2022-04-08 11:43:47
- * @LastEditors: yvesyfzhang yvesyfzhang@tencent.com
- * @LastEditTime: 2022-06-07 15:33:18
- * @Description: file content
- * @FilePath: /cli/template/src/pages/tempProj/page.config.js
- */
+const path = require('path')
 module.exports = {
 	// pageCode: 'tempProj' // 打包的文件目录名称，默认是文件夹名
 	// pageTitle: 'tempProj' // 页面标题
@@ -29,5 +22,8 @@ module.exports = {
 	// htmlConfig: {
 	// 	scriptCDN: [],
 	// 	styleCDN: []
+	// }
+	// tailwindcssConfig: {
+	// 	configPath: path.resolve(__dirname, 'tailwind.config.js')
 	// }
 };

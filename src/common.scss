@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 // px 转换为vw单位
 @function vw($px) {
   @return ($px / 750) * 100vw;
