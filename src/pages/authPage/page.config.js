@@ -22,8 +22,8 @@ module.exports = {
 	// htmlConfig: {
 	// 	scriptCDN: [],
 	// 	styleCDN: []
-	// }
-	// tailwindcssConfig: {
-	// 	configPath: path.resolve(__dirname, 'tailwind.config.js')
-	// }
+	// },
+	tailwindcssConfig: {
+		configPath: path.resolve(__dirname, 'tailwind.config.js')
+	}
 };

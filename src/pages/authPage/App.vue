@@ -1,19 +1,27 @@
 <template>
   <div class="appContent">
-    <div>{{ title }}</div>
-    <div>{{ count }}</div>
-    <div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="handleClick">按钮</div>
+    <RouterView></RouterView>
   </div>
 </template>
  
 <script lang="ts">
 import { ref } from "vue";
+import Vinput from "@/components/Vinput.vue";
+import Vlabel from "@/components/Vlabel.vue";
+import logo from '@/pages/authPage/images/logo.svg'
+import { RouterView } from 'vue-router'
 import "./app.scss";
 
 export default {
+  components: {
+    RouterView,
+    Vinput,
+    Vlabel
+  },
   setup() {
     const title = ref('hello')
     const count = ref(0)
+    const logoSrc = ref(logo)
 
     const handleClick = () => {
       count.value++
@@ -22,7 +30,8 @@ export default {
     return {
       title,
       count,
-      handleClick
+      handleClick,
+      logoSrc
     }
   }
 }
