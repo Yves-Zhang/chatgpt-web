@@ -25,7 +25,12 @@ const router = createRouter({
         pageName: '重置密码',
         pageType: 'reset'
       }
-    }
+    },
+    {
+      path: '/termsOfUse',
+      name: 'termsOfUse',
+      component: () => import('../views/termsOfUse/index.vue')
+    },
   ]
 })
 
