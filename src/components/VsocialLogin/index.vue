@@ -1,6 +1,6 @@
 <template>
   <div class="social-login">
-    <p class="mt-10 text-center text-sm text-gray-400">
+    <p class="mt-8 text-center text-sm text-gray-400">
       ———— 使用微信、QQ登录 ————
     </p>
     <div class="flex justify-center items-center">
