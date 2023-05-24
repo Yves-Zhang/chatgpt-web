@@ -1,0 +1,17 @@
+.social-login {
+  .logo-qq,
+  .logo-wechat {
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .logo-qq {
+    background-image: url(../../assast/images/qq.svg);
+  }
+
+  .logo-wechat {
+    background-image: url(../../assast/images/wechat.svg);
+    background-size: 70%;
+  }
+}

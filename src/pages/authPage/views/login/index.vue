@@ -1,16 +1,16 @@
 <template>
-  <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="login-content flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-        登录
+        登录账号
       </h2>
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-6" action="#" method="POST">
         <div>
-          <Vlabel :labelFor="'user account'" :label="'用户账号 邮箱/手机号'" />
-          <Vinput :id="'user account'" :name="'user account'" :type="'email'" :autocomplete="'email'" :required="true" />
+          <Vlabel :labelFor="'user account'" :label="'用户账号(手机号)'" />
+          <Vinput :id="'user account'" :name="'user account'" :type="'email'" :autocomplete="'email'" :required="true" :placeholder="'请输入手机号'" />
         </div>
 
         <div>
@@ -21,7 +21,17 @@
             </div>
           </div>
           <Vinput :id="'password'" :name="'password'" :type="'password'" :autocomplete="'current-password'"
-            :required="true" />
+            :required="true" :placeholder="'请输入密码'" />
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between">
+            <Vlabel :labelFor="'captcha'" :label="'验证码'" />
+            <!-- <div class="text-sm">
+              <span class="font-semibold text-indigo-600 hover:text-indigo-500">获取验证码</span>
+            </div> -->
+          </div>
+          <VgraphicCaptchaVue :placeholder="'请输入图片中的验证码'" />
         </div>
 
         <div>
@@ -39,34 +49,29 @@
         </RouterLink>
       </p>
     </div>
-    <div>
-      <p class="mt-10 text-center text-sm text-gray-400">
-        ———— 第三方登录 ————
-      </p>
-      <img :src="qq" alt="" />
-      <img :src="wechat" alt="" />
-    </div>
+    <VsocialLogin />
   </div>
 </template>
 
 <script lang="ts">
 import Vlabel from '@/components/Vlabel.vue'
 import Vinput from '@/components/Vinput.vue'
+import VsocialLogin from '@/components/VsocialLogin/index.vue'
+import VgraphicCaptchaVue from '@/components/VgraphicCaptcha.vue'
 import { RouterLink } from 'vue-router'
-import qq from '@/pages/authpage/images/qq.svg'
-import wechat from '@/pages/authpage/images/wechat.svg'
+
+import './index.scss'
 
 export default {
   components: {
+    RouterLink,
+    VsocialLogin,
     Vlabel,
     Vinput,
-    RouterLink
+    VgraphicCaptchaVue
   },
   setup() {
-    return {
-      qq,
-      wechat
-    }
+
   }
 }
 </script>
