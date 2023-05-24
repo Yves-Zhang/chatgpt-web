@@ -9,35 +9,35 @@
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-6" action="#" method="POST">
         <div>
-          <Vlabel :labelFor="'user account'" :label="'用户账号(手机号)'" />
-          <Vinput :id="'user account'" :name="'user account'" :type="'email'" :autocomplete="'email'" :required="true"
+          <Vlabel labelFor="user account" label="用户账号(手机号)" />
+          <Vinput id="user account" name="user account" type="email" autocomplete="email" :required="true"
             :placeholder="'请输入手机号'" />
         </div>
 
         <div>
           <div class="flex items-center justify-between">
-            <Vlabel :labelFor="'password'" :label="'设置密码（密码8位数，由数字、字母、下划线组成）'" />
+            <Vlabel labelFor="password" label="设置密码（密码8位数，由数字、字母、下划线组成）" />
           </div>
-          <Vinput :id="'password'" :name="'password'" :type="'password'" :autocomplete="'current-password'"
-            :required="true" :placeholder="'请设置密码'" />
+          <Vinput id="password" name="password" type="password" autocomplete="current password'"
+            :required="true" placeholder="请设置密码" />
         </div>
 
         <div>
           <div class="flex items-center justify-between">
-            <Vlabel :labelFor="'password'" :label="'确认密码'" />
+            <Vlabel labelFor="password" label="确认密码" />
           </div>
-          <Vinput :id="'password'" :name="'password'" :type="'password'" :autocomplete="'current-password'"
-            :required="true" :placeholder="'再次输入密码'" />
+          <Vinput id="password" name="password" type="password" autocomplete="current password'"
+            :required="true" placeholder="再次输入密码" />
         </div>
 
         <div>
           <div class="flex items-center justify-between">
-            <Vlabel :labelFor="'captcha'" :label="'手机验证码'" />
+            <Vlabel labelFor="captcha" label="手机验证码" />
             <div class="text-sm">
               <span class="font-semibold text-indigo-600 hover:text-indigo-500">获取验证码</span>
             </div>
           </div>
-          <Vinput :id="'captcha'" :name="'captcha'" :required="true" :placeholder="'请输入手机收到的验证码'" />
+          <Vinput id="captcha" name="captcha" :required="true" placeholder="请输入手机收到的验证码" />
         </div>
 
         <div>

@@ -9,38 +9,44 @@
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form class="space-y-6" action="#" method="POST">
         <div>
-          <Vlabel :labelFor="'user account'" :label="'用户账号(手机号)'" />
-          <Vinput :id="'user account'" :name="'user account'" :type="'email'" :autocomplete="'email'" :required="true"
-            :placeholder="'请输入手机号'" />
+          <Vlabel labelFor="user account" label="用户账号(手机号)" />
+          <Vinput id="user account" name="user account" type="email" autocomplete="email" :required="true"
+            placeholder="请输入手机号" />
         </div>
 
         <div>
           <div class="flex items-center justify-between">
-            <Vlabel :labelFor="'password'" :label="'密码'" />
+            <Vlabel labelFor="password" label="密码" />
             <div class="text-sm">
               <RouterLink to="/reset">
                 <span class="font-semibold text-indigo-600 hover:text-indigo-500">忘记密码?</span>
               </RouterLink>
             </div>
           </div>
-          <Vinput :id="'password'" :name="'password'" :type="'password'" :autocomplete="'current-password'"
-            :required="true" :placeholder="'请输入密码'" />
+          <Vinput id="password" name="password" type="password" autocomplete="current-password" :required="true"
+            placeholder="请输入密码" />
         </div>
 
         <div>
           <div class="flex items-center justify-between">
-            <Vlabel :labelFor="'captcha'" :label="'验证码'" />
+            <Vlabel labelFor="captcha" label="验证码" />
             <!-- <div class="text-sm">
               <span class="font-semibold text-indigo-600 hover:text-indigo-500">获取验证码</span>
             </div> -->
           </div>
-          <VgraphicCaptchaVue :placeholder="'请输入图片中的验证码'" />
+          <VgraphicCaptchaVue placeholder="请输入图片中的验证码" />
         </div>
 
         <div>
           <button type="submit"
             class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">登录</button>
-          <VcheckBox :label="'记住账号'" />
+
+          <div class="flex justify-between mt-4">
+            <VcheckBox>
+              同意使用条款
+            </VcheckBox>
+            <VcheckBox label="记住账号" />
+          </div>
         </div>
       </form>
 
