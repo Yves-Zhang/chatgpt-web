@@ -14,6 +14,7 @@ const _create = () => {
 	app.config.globalProperties.$http = axios;
 }
 
+_create();
 
 if ((module as any).hot) {
 	console.log('开发环境，启用热加载更新！');
