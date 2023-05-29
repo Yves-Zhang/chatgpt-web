@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       colors:{
         boderColor: '#e5e7eb', // 自定义颜色代码
+        blue:'#4F46E5'
       },
       animation: {
         blink: 'blink 1.2s infinite steps(1, start)',

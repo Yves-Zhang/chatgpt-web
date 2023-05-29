@@ -1,7 +1,9 @@
 <template>
-  <div class="appContent">
-    <RouterView></RouterView>
-  </div>
+  <n-message-provider>
+    <div class="appContent">
+      <RouterView></RouterView>
+    </div>
+  </n-message-provider>
 </template>
  
 <script lang="ts">
@@ -10,13 +12,15 @@ import Vinput from "@/components/Vinput.vue";
 import Vlabel from "@/components/Vlabel.vue";
 import logo from '@/pages/authPage/images/logo.svg'
 import { RouterView } from 'vue-router'
+import { NMessageProvider } from 'naive-ui'
 import "./app.scss";
 
 export default {
   components: {
     RouterView,
     Vinput,
-    Vlabel
+    Vlabel,
+    NMessageProvider
   },
   setup() {
     const title = ref('hello')

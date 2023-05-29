@@ -8,6 +8,8 @@
  */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
+export const cgiPath: string = `${process.env.SV_VAR_cgiPath}`
+
 // 请求拦截
 axios.interceptors.request.use((config: AxiosRequestConfig) => {
 	return config;

@@ -19,5 +19,4 @@ _create();
 if ((module as any).hot) {
 	console.log('开发环境，启用热加载更新！');
 	(module as any).hot.accept();
-	_create();
 }

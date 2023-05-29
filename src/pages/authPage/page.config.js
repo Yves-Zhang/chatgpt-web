@@ -8,17 +8,14 @@ module.exports = {
 	// 	alias: {}
 	// },
 	// 不同环境 [dev | test | prod]，通过webpack.DefinePlugin设置变量； 使用：process.env.SV_VAR_ENV
-	// variable: {
-	// 	dev: {
-	// 		ENV: 'dev',
-	// 	},
-	// 	test: {
-	// 		ENV: 'test',
-	// 	},
-	// 	prod: {
-	// 		ENV: 'prod',
-	// 	}
-	// },
+	variable: {
+		dev: {
+			cgiPath: 'http://47.106.178.58:8081',
+		},
+		prod: {
+			cgiPath: 'http://47.106.178.58:8081',
+		}
+	},
 	// htmlConfig: {
 	// 	scriptCDN: [],
 	// 	styleCDN: []
