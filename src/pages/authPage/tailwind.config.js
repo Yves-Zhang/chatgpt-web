@@ -1,15 +1,21 @@
+const path = require('path')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
+  darkMode: 'false',
   content: [
     './index.html',
     './**/*.{vue,js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
-      colors:{
+      backgroundImage: {
+        // 'custom-background': `url(${path.resolve(__dirname, 'images/bg.png')})`,
+      },
+      colors: {
         boderColor: '#e5e7eb', // 自定义颜色代码
-        blue:'#4F46E5'
+        blue: '#32bead',
+        ['blue-500']: 'rgba(50,190,173,.8)'
       },
       animation: {
         blink: 'blink 1.2s infinite steps(1, start)',

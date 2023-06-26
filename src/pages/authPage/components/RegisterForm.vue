@@ -1,6 +1,6 @@
 <template>
   <n-form ref="formRef" :model="model" :rules="rules">
-    <n-form-item path="age" label="年龄">
+    <n-form-item path="age" label="手机号">
       <Vinput placeholder="请输入手机号" 
         v-model:value="model.age" @keydown.enter.prevent />
     </n-form-item>
@@ -15,7 +15,7 @@
     <n-form-item ref="rCaptcha" first path="captcha" label="手机验证码">
       <div class="flex items-center justify-between">
         <div class="text-sm absolute top-[-28px] right-0 cursor-pointer">
-          <span class="font-semibold text-indigo-600 hover:text-indigo-500">获取验证码</span>
+          <span class="font-semibold text-indigo-600 hover:text-bg-blue-500">获取验证码</span>
         </div>
       </div>
       <Vinput placeholder="请输入手机验证码" 
@@ -25,7 +25,7 @@
       <n-col :span="24">
         <div style="display: flex; justify-content: flex-end">
           <button :disabled="model.age === null" round @click="handleValidateButtonClick"
-            class="cursor-pointer flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            class="cursor-pointer flex w-full justify-center rounded-md bg-blue px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
             {{ btnText }}
           </button>
         </div>

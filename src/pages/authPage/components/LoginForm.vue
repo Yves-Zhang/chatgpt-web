@@ -7,7 +7,7 @@
       <div class="flex items-center justify-between">
         <div class="text-sm absolute top-[-28px] right-0 cursor-pointer">
           <RouterLink to="/reset">
-            <span class="font-semibold text-indigo-600 hover:text-indigo-500">忘记密码</span>
+            <span class="font-semibold text-indigo-600 hover:text-bg-blue-500">忘记密码</span>
           </RouterLink>
         </div>
       </div>
@@ -22,7 +22,7 @@
       <n-col :span="24">
         <div style="display: flex; justify-content: flex-end">
           <button :disabled="model.age === null" round @click="handleValidateButtonClick"
-            class="cursor-pointer flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            class="cursor-pointer flex w-full justify-center rounded-md bg-blue px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
             {{ btnText }}
           </button>
         </div>

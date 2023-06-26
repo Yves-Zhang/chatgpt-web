@@ -1,6 +1,6 @@
 <template>
   <n-input v-bind="$attrs" v-on="$attrs" class="rounded-md shadow-sm"
-    style="--n-border-hover: 1px solid #3b82f680;--n-border-focus:1px solid #87A1FA;--n-caret-color:1px solid #87A1FA">
+    style="--n-border-hover: 1px solid #32bead;--n-border-focus:1px solid #32bead;--n-caret-color:1px solid #32bead">
     <slot></slot>
   </n-input>
 </template>
