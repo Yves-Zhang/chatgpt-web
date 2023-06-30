@@ -10,19 +10,31 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export const cgiPath: string = `${process.env.SV_VAR_cgiPath}`
 
+
+const instance = axios.create({
+  // withCredentials: true, // 允许携带 Cookies
+});
+
 // 请求拦截
-axios.interceptors.request.use((config: AxiosRequestConfig) => {
+instance.interceptors.request.use((config: AxiosRequestConfig) => {
 	return config;
 });
 
 // 响应拦截
-axios.interceptors.response.use(
+instance.interceptors.response.use(
 	(response: AxiosResponse<any>) => {
-		return response;
+		if (response.status === 200) {
+			return response.data;
+		} else {
+			return Promise.reject(response.data.msg);
+		}
 	},
 	(error: any) => {
+		if (error.response && error.response.status === 400) {
+      return Promise.reject(error.response.data);
+    }
 		return Promise.reject(error);
 	}
 );
 
-export default axios;
+export default instance;

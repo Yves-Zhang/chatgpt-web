@@ -12,7 +12,7 @@
         没有账号?
         <RouterLink to="/register">
           <span class="font-semibold leading-6 text-indigo-600 hover:text-bg-blue-500">
-            免费使用14天
+            马上注册
           </span>
         </RouterLink>
       </p>

@@ -10,10 +10,11 @@ module.exports = {
 	// 不同环境 [dev | test | prod]，通过webpack.DefinePlugin设置变量； 使用：process.env.SV_VAR_ENV
 	variable: {
 		dev: {
-			cgiPath: 'http://47.106.178.58:8081',
+			// cgiPath: 'http://test.koudingtu.com',
+			cgiPath: 'https://test.koudingtu.com',
 		},
 		prod: {
-			cgiPath: 'http://47.106.178.58:8081',
+			cgiPath: 'https://starlight.koudingtu.com',
 		}
 	},
 	// htmlConfig: {
