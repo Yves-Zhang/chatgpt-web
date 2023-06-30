@@ -1,7 +1,7 @@
 <template>
   <div class="social-login">
     <p class="mt-8 text-center text-sm text-gray-400">
-      ———— 使用微信、QQ登录 ————
+      ———— 使用微信登录 ————
     </p>
     <div class="flex justify-center items-center">
       <div v-for="(item, index) in images" :key="index"
@@ -19,9 +19,9 @@ import './index.scss'
 export default {
   setup() {
     const images = reactive([
-      {
-        name: 'qq',
-      },
+      // {
+      //   name: 'qq',
+      // },
       {
         name: 'wechat',
       }

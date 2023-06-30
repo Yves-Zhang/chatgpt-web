@@ -1,6 +1,6 @@
 <template>
   <n-form ref="formRef" :model="model" :rules="rules">
-    <n-form-item path="user" label="用户账号（手机号）">
+    <n-form-item path="phone" label="用户账号（手机号）">
       <Vinput placeholder="请输入手机号" v-model:value="model.phone" @keydown.enter.prevent />
     </n-form-item>
     <n-form-item ref="password" first path="password" label="密码">
@@ -67,7 +67,7 @@ import {
 } from 'naive-ui'
 import { RouterLink } from 'vue-router'
 import { getCaptcha_http, login_http, sendVerify_http } from '../http/authHttp'
-import { debounce } from '@/utils/tool'
+import { debounce, setCrossSubdomainCookie } from '@/utils/tool'
 
 interface ModelType {
   phone: string | null
@@ -150,12 +150,14 @@ export default defineComponent({
 
       if (res.code === 'success') {
         message.success('登录成功')
-        localStorage.setItem('token', res.data.token)
-        localStorage.setItem('userInfo', JSON.stringify(res.data.userInfo))
-        localStorage.setItem('isLogin', 'true')
+        const userInfo = {
+          name: res.data.name
+        }
+        setCrossSubdomainCookie('token', res.data.token, 7)
+        setCrossSubdomainCookie('userInfo', JSON.stringify(userInfo), 7)
 
         setTimeout(() => {
-          window.location.href = 'https://koudingtu.com'
+          window.location.href = 'https://ai.koudingtu.com/openai'
         }, 500)
       } else {
         message.error(res.msg || '登录失败')

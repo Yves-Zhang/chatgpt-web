@@ -76,7 +76,7 @@ import {
   NModal
 } from 'naive-ui'
 
-import { getCaptcha_http, register_http, sendVerify_http } from '../http/authHttp'
+import { getCaptcha_http, register_http, resetPassword_http, sendVerify_http } from '../http/authHttp'
 import { debounce } from '@/utils/tool'
 import { useRouter } from 'vue-router'
 
@@ -89,6 +89,7 @@ interface ModelType {
 
 interface VformProps {
   btnText?: string
+  pageType: 'reset' | 'register'
 }
 
 export default defineComponent({
@@ -103,7 +104,7 @@ export default defineComponent({
     NModal
   },
   setup(props: VformProps) {
-    const { btnText } = toRefs(props)
+    const { btnText, pageType } = toRefs(props)
     const formRef = ref<FormInst | null>(null)
     const rPasswordFormItemRef = ref<FormItemInst | null>(null)
     const message = useMessage()
@@ -140,10 +141,6 @@ export default defineComponent({
       } catch (e: any) {
         message.error(e.msg || '手机验证码发送失败，请重试。')
       }
-    }
-
-    const onNegativeClick = () => {
-      showModal.value = false
     }
 
     function validatePasswordStartWith(
@@ -223,6 +220,7 @@ export default defineComponent({
 
     return {
       btnText,
+      pageType,
       formRef,
       rPasswordFormItemRef,
       model: modelRef,
@@ -237,26 +235,40 @@ export default defineComponent({
         formRef.value?.validate(async (errors) => {
           if (!errors) {
             try {
-              const res: any = await register_http({
-                "code": modelRef.value.verificationCode,
-                "name": modelRef.value.phone,
-                "password": modelRef.value.password,
-                "phone": modelRef.value.phone,
-              })
+              let res: any
+              if (pageType.value === 'register') {
+                res = await register_http({
+                  "code": modelRef.value.verificationCode,
+                  "name": modelRef.value.phone,
+                  "password": modelRef.value.password,
+                  "phone": modelRef.value.phone,
+                })
+              }
+
+              if (pageType.value === 'reset') {
+                res = await resetPassword_http({
+                  "code": modelRef.value.verificationCode,
+                  "password": modelRef.value.password,
+                  "phone": modelRef.value.phone,
+                })
+              }
+
+              const errorMsg = pageType.value === 'register' ? '注册失败，请检查输入' : '重置密码失败，请检查输入'
+              const successMsg = pageType.value === 'register' ? '注册成功' : '重置密码成功'
 
               if (res.code === 'error') {
-                message.error(res.msg || '注册失败，请检查输入')
+                message.error(res.msg || errorMsg)
                 return
               }
 
-              message.success('注册成功')
-
+              message.success(successMsg)
               // 返回登录页
               setTimeout(() => {
-                router.push('/destination');
+                router.push('/login');
               }, 1000)
             } catch (e: any) {
-              message.error(e.msg || '注册失败，请检查输入')
+              const errorMsg = pageType.value === 'register' ? '注册失败，请检查输入' : '重置密码失败，请检查输入'
+              message.error(e.msg || errorMsg)
               return
             }
           } else {

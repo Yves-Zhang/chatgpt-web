@@ -54,6 +54,7 @@
 	},
 	"dependencies": {
 		"axios": "^0.26.1",
+		"cookiejs": "^2.1.2",
 		"naive-ui": "^2.34.4",
 		"validator": "^13.9.0",
 		"vue": "^3.2.31",

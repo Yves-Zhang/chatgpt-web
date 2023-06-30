@@ -14,3 +14,6 @@ export const cgi_getCaptcha = `${cgiPath}/api/login/getCaptcha`
 
 // 手机验证码
 export const cgi_sendVerify = `${cgiPath}/api/login/sendVerify`
+
+// 重置密码
+export const cgi_resetPassword = `${cgiPath}/api/user/updatePasswordRequest`

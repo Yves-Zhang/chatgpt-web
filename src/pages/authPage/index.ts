@@ -6,6 +6,9 @@ import router from './router'
 
 import "@/common.scss"
 
+// 设置 document.domain 属性为父级域名（包括顶级域名）相同的值
+document.domain = 'example.com';
+
 const _create = () => {
 	const app = createApp(App);
 	app.use(store);

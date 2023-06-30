@@ -4,7 +4,8 @@ import {
   cgi_login,
   cgi_signOut,
   cgi_getCaptcha,
-  cgi_sendVerify
+  cgi_sendVerify,
+  cgi_resetPassword
 } from './cgiConfig'
 
 // 注册
@@ -30,4 +31,9 @@ export const getCaptcha_http = async (params: any) => {
 // 手机验证码
 export const sendVerify_http = async (params: any) => {
   return await request.post(cgi_sendVerify, params)
+}
+
+// 重置密码
+export const resetPassword_http = async (params: any) => {
+  return await request.post(cgi_resetPassword, params)
 }
