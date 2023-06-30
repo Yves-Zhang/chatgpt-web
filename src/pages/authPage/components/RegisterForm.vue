@@ -93,7 +93,7 @@ interface VformProps {
 }
 
 export default defineComponent({
-  props: ['btnText'],
+  props: ['btnText', 'pageType'],
   components: {
     NButton,
     NForm,
@@ -202,12 +202,11 @@ export default defineComponent({
         message.error('手机号不能为空')
         return
       }
+      showModal.value = true
       getCaptcha_http({
         phone: modelRef.value.phone,
       }).then((res: any) => {
-        console.log(res, res.code === 'success')
         if (res.code === 'success') {
-          showModal.value = true
           Img.value = res.data.img
         } else {
           message.error(res.msg || '获取验证码失败,请稍后重试')

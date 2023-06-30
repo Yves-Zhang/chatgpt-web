@@ -11,7 +11,7 @@
           </RouterLink>
         </div>
       </div>
-      <Vinput placeholder="请输入登录密码" v-model:value="model.password" @keydown.enter.prevent />
+      <Vinput placeholder="请输入登录密码" v-model:value="model.password" @keydown.enter.prevent type="password" />
     </n-form-item>
     <!-- <n-form-item path="rCaptcha" label="验证码">
       <VgraphicCaptchaVue placeholder="请输入图片中的验证码" v-model:value="model.password" type="password"
@@ -167,11 +167,11 @@ export default defineComponent({
     const getCaptcha = debounce(() => {
       formRef.value?.validate(async (errors) => {
         if (!errors) {
+          showModal.value = true
           getCaptcha_http({
             phone: modelRef.value.phone,
           }).then((res: any) => {
             if (res.code === 'success') {
-              showModal.value = true
               Img.value = res.data.img
             } else {
               message.error(res.msg || '获取验证码失败,请稍后重试')
