@@ -7,7 +7,7 @@
     </div>
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <Vform :btnText="pageType === 'reset' ? '重置' : '注册账号'" :type="pageType" />
+      <Vform :btnText="pageType === 'reset' ? '重置' : '注册账号'" :pageType="pageType" />
       <p class="mt-6 text-center text-sm text-gray-500" v-if="pageType === 'register'">
         已有账号?
         <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-bg-blue-500">登录你的账号</a>
