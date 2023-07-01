@@ -13,11 +13,11 @@
     </n-form-item>
     <n-form-item path="password" label="密码">
       <Vinput placeholder="请设置密码" v-model:value="model.password" type="password" @input="handlePasswordInput"
-        @keydown.enter.prevent />
+        @keydown.enter.prevent show-password-on="mousedown" />
     </n-form-item>
     <n-form-item ref="rPasswordFormItemRef" first path="reenteredPassword" label="重复密码">
       <Vinput placeholder="请再次确认密码" v-model:value="model.reenteredPassword" :disabled="!model.password" type="password"
-        @keydown.enter.prevent />
+        @keydown.enter.prevent show-password-on="mousedown" />
     </n-form-item>
     <n-form-item ref="rCaptcha" first path="captcha" label="手机验证码">
       <div class="flex items-center justify-between">
@@ -173,8 +173,15 @@ export default defineComponent({
       ],
       password: [
         {
-          required: true,
-          message: '请输入密码'
+          validator(rule: FormItemRule, value: string) {
+            if (!value) {
+              return new Error('请输入密码')
+            } else if (!/^[0-9a-zA-Z_]{6,8}$/.test(value)) {
+              return new Error('密码6到8位数，由数字字母下划线组成')
+            }
+            return true
+          },
+          trigger: ['input', 'blur']
         }
       ],
       reenteredPassword: [

@@ -1,7 +1,7 @@
 const path = require('path')
 module.exports = {
 	// pageCode: 'tempProj' // 打包的文件目录名称，默认是文件夹名
-	// pageTitle: 'tempProj' // 页面标题
+	pageTitle: '扣叮兔', // 页面标题
 	// testPathPrefix: '' // 发布测试页面到cos桶的路径前缀 
 	// webpack: {
 	// 	publicPath: '',

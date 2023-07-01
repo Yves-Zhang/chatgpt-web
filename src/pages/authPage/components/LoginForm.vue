@@ -11,7 +11,7 @@
           </RouterLink>
         </div>
       </div>
-      <Vinput placeholder="请输入登录密码" v-model:value="model.password" @keydown.enter.prevent type="password" />
+      <Vinput placeholder="请输入登录密码" v-model:value="model.password" @keydown.enter.prevent type="password" show-password-on="mousedown" />
     </n-form-item>
     <!-- <n-form-item path="rCaptcha" label="验证码">
       <VgraphicCaptchaVue placeholder="请输入图片中的验证码" v-model:value="model.password" type="password"
