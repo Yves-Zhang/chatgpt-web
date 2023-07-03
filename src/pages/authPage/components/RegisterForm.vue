@@ -210,8 +210,10 @@ export default defineComponent({
         return
       }
       showModal.value = true
+      // LOGIN==1 REGISTER==2 UPDATE_PASSWORD==3
       getCaptcha_http({
         phone: modelRef.value.phone,
+        type: pageType.value === 'register' ? 2 : 3
       }).then((res: any) => {
         if (res.code === 'success') {
           Img.value = res.data.img

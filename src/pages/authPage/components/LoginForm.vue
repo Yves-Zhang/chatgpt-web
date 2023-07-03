@@ -168,8 +168,10 @@ export default defineComponent({
       formRef.value?.validate(async (errors) => {
         if (!errors) {
           showModal.value = true
+          // LOGIN==1 REGISTER==2 UPDATE_PASSWORD==3
           getCaptcha_http({
             phone: modelRef.value.phone,
+            type: 1
           }).then((res: any) => {
             if (res.code === 'success') {
               Img.value = res.data.img
