@@ -128,7 +128,8 @@ export default defineComponent({
       try {
         const res: any = await sendVerify_http({
           phone: modelRef.value.phone,
-          text: verificationImgCode.value
+          text: verificationImgCode.value,
+          type: pageType.value === 'register' ? 2 : 3
         })
         if (res.code === 'success') {
           message.success('手机验证码已发送成功，请查收。')

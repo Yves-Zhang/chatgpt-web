@@ -66,7 +66,7 @@ import {
   NModal
 } from 'naive-ui'
 import { RouterLink } from 'vue-router'
-import { getCaptcha_http, login_http, sendVerify_http } from '../http/authHttp'
+import { getCaptcha_http, login_http } from '../http/authHttp'
 import { debounce, setCrossSubdomainCookie } from '@/utils/tool'
 
 interface ModelType {
