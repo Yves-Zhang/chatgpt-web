@@ -67,7 +67,7 @@ import {
 } from 'naive-ui'
 import { RouterLink } from 'vue-router'
 import { getCaptcha_http, login_http } from '../http/authHttp'
-import { debounce, setCrossSubdomainCookie } from '@/utils/tool'
+import { debounce, loginAfter, setCrossSubdomainCookie } from '@/utils/tool'
 
 interface ModelType {
   phone: string | null
@@ -150,15 +150,7 @@ export default defineComponent({
 
       if (res.code === 'success') {
         message.success('登录成功')
-        const userInfo = {
-          name: res.data.name
-        }
-        setCrossSubdomainCookie('token', res.data.token, 7)
-        setCrossSubdomainCookie('userInfo', JSON.stringify(userInfo), 7)
-
-        setTimeout(() => {
-          window.location.href = 'https://ai.koudingtu.com/openai'
-        }, 500)
+        loginAfter(res)
       } else {
         message.error(res.msg || '登录失败')
       }

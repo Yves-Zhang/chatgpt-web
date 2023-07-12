@@ -5,7 +5,8 @@ import {
   cgi_signOut,
   cgi_getCaptcha,
   cgi_sendVerify,
-  cgi_resetPassword
+  cgi_resetPassword,
+  cgi_wxSingIn
 } from './cgiConfig'
 
 // 注册
@@ -36,4 +37,9 @@ export const sendVerify_http = async (params: any) => {
 // 重置密码
 export const resetPassword_http = async (params: any) => {
   return await request.post(cgi_resetPassword, params)
+}
+
+// 微信登录
+export const wxLogin_http = async (params: any) => {
+  return await request.post(cgi_wxSingIn, params)
 }

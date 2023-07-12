@@ -24,7 +24,7 @@
 <script lang="ts">
 import VsocialLogin from '@/components/VsocialLogin/index.vue'
 import VcheckBox from '@/components/VcheckBox/index.vue'
-import { RouterLink, useRoute } from 'vue-router'
+import { RouterLink } from 'vue-router'
 import Vform from '../../components/LoginForm.vue'
 
 import './index.scss'
@@ -37,8 +37,8 @@ export default {
     VcheckBox
   },
   setup(props: any) {
-    const router = useRoute()
-    console.log(router)
+    // const router = useRoute()
+    // console.log(router)
 
   }
 }

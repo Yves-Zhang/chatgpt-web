@@ -17,3 +17,6 @@ export const cgi_sendVerify = `${cgiPath}/api/login/sendVerify`
 
 // 重置密码
 export const cgi_resetPassword = `${cgiPath}/api/user/updatePasswordRequest`
+
+// 微信登录
+export const cgi_wxSingIn = `${cgiPath}/api/login/wxSingIn`
