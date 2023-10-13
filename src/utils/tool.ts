@@ -31,11 +31,8 @@ export function getUrlParams() {
 
 
 export function loginAfter(res: any) {
-  const userInfo = {
-    name: res.data.name
-  }
   setCrossSubdomainCookie('token', res.data.token, 7)
-  setCrossSubdomainCookie('userInfo', JSON.stringify(userInfo), 7)
+  setCrossSubdomainCookie('userInfo', JSON.stringify(res.data), 7)
 
   setTimeout(() => {
     window.location.href = 'https://ai.koudingtu.com/openai'
