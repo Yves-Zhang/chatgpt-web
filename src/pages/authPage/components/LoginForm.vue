@@ -123,7 +123,7 @@ export default defineComponent({
           validator(rule: FormItemRule, value: string) {
             if (!value) {
               return new Error('请输入手机号')
-            } else if (!/^1[3-9]\d{9}$/.test(value)) {
+            } else if (!/^1[3-9]\d{9}$/.test(value) && !/^koudingtu\d{1,2}$/i.test(value)) {
               return new Error('请输入正确的手机号')
             }
             return true
