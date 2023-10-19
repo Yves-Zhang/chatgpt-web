@@ -121,7 +121,6 @@ d.其他危害计算机信息网络安全的行为；
 <script lang="ts">
 import terms from '@/assast/terms.json'
 import { ref } from 'vue'
-import './index.scss'
 
 export default {
   name: 'TermsOfUse',

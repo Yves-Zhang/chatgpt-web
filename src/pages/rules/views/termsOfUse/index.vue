@@ -262,7 +262,6 @@ Cookie 和设备信息标识等同类技术是互联网中普遍使用的技术
 <script lang="ts">
 import terms from '@/assast/terms.json'
 import { ref } from 'vue'
-import './index.scss'
 
 export default {
   name: 'TermsOfUse',
