@@ -4,9 +4,14 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     {
-      path: '/termsOfUse',
-      name: 'termsOfUse',
+      path: '/privacy-policy',
+      name: 'privacy-policy',
       component: () => import('../views/termsOfUse/index.vue')
+    },
+    {
+      path: '/terms-of-service',
+      name: 'terms-of-service',
+      component: () => import('../views/termsOfService/index.vue')
     },
   ]
 })
