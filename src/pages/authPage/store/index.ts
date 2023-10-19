@@ -8,6 +8,7 @@
  */
 
 import Vuex from 'vuex';
+import loginStore from './loginStore';
 
 const state: any = {};
 const store = new Vuex.Store({
@@ -15,7 +16,9 @@ const store = new Vuex.Store({
 	getters: {},
 	mutations: {},
 	actions: {},
-	modules: {},
+	modules: {
+		loginStore
+	},
 	plugins: []
 });
 

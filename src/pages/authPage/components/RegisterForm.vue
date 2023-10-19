@@ -40,6 +40,12 @@
       </n-col>
     </n-row>
   </n-form>
+  <n-checkbox :checked="state.loginStore.isAgree" class="mt-2" @update:checked="checkedHandle">
+    同意
+  </n-checkbox>
+  <a class="cursor-pointer">
+    <span class="font-semibold leading-6 text-indigo-600 hover:text-bg-blue-500">《服务条款》</span>
+  </a>
   <n-modal v-model:show="showModal" :mask-closable="false" preset="dialog" title="请验证">
     <div class="flex flex-col md:flex-row gap-4 mt-4 mb-4">
       <div class="w-full md:w-1/2 h-64 h-auto md:order-0 order-1">
@@ -73,12 +79,14 @@ import {
   NFormItem,
   NCol,
   NRow,
-  NModal
+  NModal,
+  NCheckbox
 } from 'naive-ui'
 
 import { getCaptcha_http, register_http, resetPassword_http, sendVerify_http } from '../http/authHttp'
 import { debounce } from '@/utils/tool'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
 interface ModelType {
   phone: string | null
@@ -101,7 +109,8 @@ export default defineComponent({
     NCol,
     NRow,
     Vinput,
-    NModal
+    NModal,
+    NCheckbox
   },
   setup(props: VformProps) {
     const { btnText, pageType } = toRefs(props)
@@ -118,6 +127,8 @@ export default defineComponent({
     const verificationImgCode = ref<string | null>(null)
     const Img = ref<string | undefined>(undefined)
     const router = useRouter();
+    const { state, dispatch } = useStore()
+
     // 验证码弹窗 确认
     const onPositiveClick = async () => {
       if (!verificationImgCode.value) {
@@ -206,6 +217,10 @@ export default defineComponent({
     }
 
     const getCaptcha = debounce(() => {
+      if (!state.loginStore.isAgree) {
+        message.error('请先同意《服务条款》')
+        return
+      }
       if (!modelRef.value.phone) {
         message.error('手机号不能为空')
         return
@@ -225,6 +240,10 @@ export default defineComponent({
         message.error(err.msg || '获取验证码失败,请检查手机号')
       })
     })
+
+    const checkedHandle = (checked: boolean) => {
+      dispatch('agreeRules', checked)
+    }
 
 
     return {
@@ -289,7 +308,9 @@ export default defineComponent({
       showModal,
       onPositiveClick,
       verificationImgCode,
-      Img
+      Img,
+      checkedHandle,
+      state
     }
   }
 })

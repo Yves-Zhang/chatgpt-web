@@ -29,6 +29,12 @@
       </n-col>
     </n-row>
   </n-form>
+  <n-checkbox :checked="state.loginStore.isAgree" class="mt-2" @update:checked="checkedHandle">
+    同意
+  </n-checkbox>
+  <a class="cursor-pointer">
+    <span class="font-semibold leading-6 text-indigo-600 hover:text-bg-blue-500">《服务条款》</span>
+  </a>
   <n-modal v-model:show="showModal" :mask-closable="false" preset="dialog" title="请验证">
     <div class="flex flex-col md:flex-row gap-4 mt-4 mb-4">
       <div class="w-full md:w-1/2 h-64 h-auto md:order-0 order-1">
@@ -63,11 +69,13 @@ import {
   NFormItem,
   NCol,
   NRow,
-  NModal
+  NModal,
+  NCheckbox
 } from 'naive-ui'
 import { RouterLink } from 'vue-router'
 import { getCaptcha_http, login_http } from '../http/authHttp'
 import { debounce, loginAfter, setCrossSubdomainCookie } from '@/utils/tool'
+import { useStore } from 'vuex';
 
 interface ModelType {
   phone: string | null
@@ -89,7 +97,8 @@ export default defineComponent({
     NRow,
     Vinput,
     VgraphicCaptchaVue,
-    NModal
+    NModal,
+    NCheckbox
   },
   setup(props: VformProps) {
     const showModal = ref(false)
@@ -104,6 +113,7 @@ export default defineComponent({
       password: null,
       reenteredPassword: null
     })
+    const { state, dispatch } = useStore()
 
     // 验证码弹窗 确认
     const onPositiveClick = async (e: MouseEvent) => {
@@ -157,6 +167,11 @@ export default defineComponent({
     }
 
     const getCaptcha = debounce(() => {
+      if (!state.loginStore.isAgree) {
+        message.error('请先同意《服务条款》')
+        return
+      }
+
       formRef.value?.validate(async (errors) => {
         if (!errors) {
           showModal.value = true
@@ -180,6 +195,10 @@ export default defineComponent({
       })
     })
 
+    const checkedHandle = (checked: boolean) => {
+      dispatch('agreeRules', checked)
+    }
+
     return {
       Img,
       showModal,
@@ -190,7 +209,9 @@ export default defineComponent({
       rules,
       onPositiveClick,
       getCaptcha,
-      verificationImgCode
+      verificationImgCode,
+      checkedHandle,
+      state
     }
   }
 })
