@@ -43,8 +43,11 @@
   <n-checkbox :checked="state.loginStore.isAgree" class="mt-2" @update:checked="checkedHandle">
     同意
   </n-checkbox>
-  <a class="cursor-pointer">
-    <span class="font-semibold leading-6 text-indigo-600 hover:text-bg-blue-500">《服务条款》</span>
+  <a class="cursor-pointer" href="https://ai.koudingtu.com/webapp/rules/#/privacy-policy" target="_blank">
+    <span class="font-semibold leading-6 text-indigo-600 hover:text-bg-blue-500">《隐私保护指引》</span>
+  </a>
+  <a class="cursor-pointer" href="https://ai.koudingtu.com/webapp/rules/#/terms-of-service" target="_blank">
+    <span class="font-semibold leading-6 text-indigo-600 hover:text-bg-blue-500">《使用协议》</span>
   </a>
   <n-modal v-model:show="showModal" :mask-closable="false" preset="dialog" title="请验证">
     <div class="flex flex-col md:flex-row gap-4 mt-4 mb-4">
