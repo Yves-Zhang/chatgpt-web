@@ -1,7 +1,7 @@
 import { cgiPath } from '../index'
 
 // 注册
-export const cgi_register = `${cgiPath}/api/user/register`
+export const cgi_register = `${cgiPath}/api/user/user/register`
 
 // 登录
 export const cgi_login = `${cgiPath}/api/user/login/singIn`
@@ -16,7 +16,7 @@ export const cgi_getCaptcha = `${cgiPath}/api/user/login/getCaptcha`
 export const cgi_sendVerify = `${cgiPath}/api/user/login/sendVerify`
 
 // 重置密码
-export const cgi_resetPassword = `${cgiPath}/api/user/updatePasswordRequest`
+export const cgi_resetPassword = `${cgiPath}/api/user/user/updatePasswordRequest`
 
 // 微信登录
 export const cgi_wxSingIn = `${cgiPath}/api/user/login/wxSingIn`
