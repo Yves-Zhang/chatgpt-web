@@ -13,7 +13,7 @@
   <n-modal v-model:show="showModal" :mask-closable="false" preset="dialog">
     <div class="w-full tify-center items-center h-[400px]">
       <iframe class="w-full tify-center items-center h-full"
-        src="https://open.weixin.qq.com/connect/qrconnect?appid=wx12b42dfa93930821&redirect_uri=https%3A%2F%2Fai.koudingtu.com&response_type=code&scope=snsapi_login&aaa=000"
+        :src="`https://open.weixin.qq.com/connect/qrconnect?appid=wx12b42dfa93930821&redirect_uri=https%3A%2F%2Fai.koudingtu.com&response_type=code&scope=snsapi_login&state=${wxParams}`"
         frameborder="0"></iframe>
     </div>
   </n-modal>
@@ -37,18 +37,18 @@ export default {
   setup() {
     const message = useMessage()
     const router = useRouter()
+    const wxParams = ref<any>(JSON.stringify(router.currentRoute.value.query))
 
-    const { channle } = router.currentRoute.value.query
-    const { code } = params
+    
+    const { code, state } = params
+    const stateParams = JSON.parse(decodeURIComponent(state || '{}'))
+    const { channle: _channle } = stateParams
 
     async function login() {
       const res: any = await wxLogin_http({
         wxCode: code,
-        channle
+        channle: _channle
       });
-
-      console.log('res', channle)
-      return
 
       if (res.code === 'success') {
         message.success('登录成功');
@@ -77,7 +77,8 @@ export default {
     return {
       images,
       showModal,
-      wxDiv
+      wxDiv,
+      wxParams
     }
   }
 }
