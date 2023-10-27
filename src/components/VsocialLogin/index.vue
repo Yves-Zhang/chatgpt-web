@@ -13,7 +13,7 @@
   <n-modal v-model:show="showModal" :mask-closable="false" preset="dialog">
     <div class="w-full tify-center items-center h-[400px]">
       <iframe class="w-full tify-center items-center h-full"
-        :src="`https://open.weixin.qq.com/connect/qrconnect?appid=wx12b42dfa93930821&redirect_uri=https%3A%2F%2Fai.koudingtu.com&response_type=code&scope=snsapi_login&state=${wxParams}`"
+        :src="url"
         frameborder="0"></iframe>
     </div>
   </n-modal>
@@ -37,14 +37,20 @@ export default {
   setup() {
     const message = useMessage()
     const router = useRouter()
-    const wxParams = ref<any>(JSON.stringify(router.currentRoute.value.query))
 
-    
+    // 将对象转换为JSON字符串
+    const jsonData = JSON.stringify(router.currentRoute.value.query);
+
+    // 对JSON字符串进行URL编码
+    const encodedData = encodeURIComponent(encodeURIComponent(jsonData));
+    const url = ref<string>('https://open.weixin.qq.com/connect/qrconnect?appid=wx12b42dfa93930821&redirect_uri=https%3A%2F%2Fai.koudingtu.com&response_type=code&scope=snsapi_login&state=' + encodedData + '')
+
     const { code, state } = params
-    const stateParams = JSON.parse(decodeURIComponent(state || '{}'))
-    const { channle: _channle } = stateParams
 
     async function login() {
+      const stateParams = JSON.parse(state)
+      const { channle: _channle } = stateParams
+
       const res: any = await wxLogin_http({
         wxCode: code,
         channle: _channle
@@ -78,7 +84,7 @@ export default {
       images,
       showModal,
       wxDiv,
-      wxParams
+      url
     }
   }
 }
