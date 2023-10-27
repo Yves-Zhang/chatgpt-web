@@ -129,7 +129,7 @@ export default defineComponent({
     const showModal = ref(false)
     const verificationImgCode = ref<string | null>(null)
     const Img = ref<string | undefined>(undefined)
-    const router = useRouter();
+    const router:any = useRouter();
     const { state, dispatch } = useStore()
 
     // 验证码弹窗 确认
@@ -262,6 +262,7 @@ export default defineComponent({
         }
       },
       handleValidateButtonClick(e: MouseEvent) {
+        const { channle } = router.currentRoute.value.query
         e.preventDefault()
         formRef.value?.validate(async (errors) => {
           if (!errors) {
@@ -273,6 +274,7 @@ export default defineComponent({
                   "name": modelRef.value.phone,
                   "password": modelRef.value.password,
                   "phone": modelRef.value.phone,
+                  "channle": channle
                 })
               }
 

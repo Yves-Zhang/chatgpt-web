@@ -13,7 +13,7 @@
   <n-modal v-model:show="showModal" :mask-closable="false" preset="dialog">
     <div class="w-full tify-center items-center h-[400px]">
       <iframe class="w-full tify-center items-center h-full"
-        src="https://open.weixin.qq.com/connect/qrconnect?appid=wx12b42dfa93930821&redirect_uri=https%3A%2F%2Fai.koudingtu.com&response_type=code&scope=snsapi_login"
+        src="https://open.weixin.qq.com/connect/qrconnect?appid=wx12b42dfa93930821&redirect_uri=https%3A%2F%2Fai.koudingtu.com&response_type=code&scope=snsapi_login&aaa=000"
         frameborder="0"></iframe>
     </div>
   </n-modal>
@@ -27,6 +27,7 @@ import {
 import { getUrlParams, loginAfter, removeUrlParameter } from "@/utils/tool";
 import './index.scss'
 import { wxLogin_http } from '@/pages/authPage/http/authHttp';
+import { useRouter } from 'vue-router';
 
 const params = getUrlParams()
 export default {
@@ -35,11 +36,19 @@ export default {
   },
   setup() {
     const message = useMessage()
+    const router = useRouter()
+
+    const { channle } = router.currentRoute.value.query
+    const { code } = params
 
     async function login() {
       const res: any = await wxLogin_http({
-        wxCode: code
+        wxCode: code,
+        channle
       });
+
+      console.log('res', channle)
+      return
 
       if (res.code === 'success') {
         message.success('登录成功');
@@ -49,9 +58,6 @@ export default {
       }
       removeUrlParameter('code');
     }
-
-
-    const { code } = params
 
     if (code) {
       login();

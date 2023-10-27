@@ -6,7 +6,10 @@
     <n-form-item ref="password" first path="password" label="密码">
       <div class="flex items-center justify-between">
         <div class="text-sm absolute top-[-28px] right-0 cursor-pointer">
-          <RouterLink to="/reset">
+          <RouterLink :to="{
+            path: '/reset',
+            query: route.query
+          }">
             <span class="font-semibold text-indigo-600 hover:text-bg-blue-500">忘记密码</span>
           </RouterLink>
         </div>
@@ -75,7 +78,7 @@ import {
   NModal,
   NCheckbox
 } from 'naive-ui'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import { getCaptcha_http, login_http } from '../http/authHttp'
 import { debounce, loginAfter, setCrossSubdomainCookie } from '@/utils/tool'
 import { useStore } from 'vuex';
@@ -117,6 +120,7 @@ export default defineComponent({
       reenteredPassword: null
     })
     const { state, dispatch } = useStore()
+    const route = useRoute();
 
     // 验证码弹窗 确认
     const onPositiveClick = async (e: MouseEvent) => {
@@ -214,7 +218,8 @@ export default defineComponent({
       getCaptcha,
       verificationImgCode,
       checkedHandle,
-      state
+      state,
+      route
     }
   }
 })

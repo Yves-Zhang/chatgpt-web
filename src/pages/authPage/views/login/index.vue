@@ -10,7 +10,7 @@
       <Vform :btnText="'登录'" />
       <p class="mt-6 text-center text-sm text-gray-500">
         没有账号?
-        <RouterLink to="/register">
+        <RouterLink :to="{ path: '/register', query: router.query }">
           <span class="font-semibold leading-6 text-indigo-600 hover:text-bg-blue-500">
             马上注册
           </span>
@@ -24,7 +24,7 @@
 <script lang="ts">
 import VsocialLogin from '@/components/VsocialLogin/index.vue'
 import VcheckBox from '@/components/VcheckBox/index.vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import Vform from '../../components/LoginForm.vue'
 
 import './index.scss'
@@ -37,8 +37,12 @@ export default {
     VcheckBox
   },
   setup(props: any) {
-    // const router = useRoute()
+    const router = useRoute()
     // console.log(router)
+
+    return {
+      router
+    }
 
   }
 }
