@@ -87,7 +87,7 @@ import {
 } from 'naive-ui'
 
 import { getCaptcha_http, register_http, resetPassword_http, sendVerify_http } from '../http/authHttp'
-import { debounce } from '@/utils/tool'
+import { debounce, loginAfter } from '@/utils/tool'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
@@ -129,7 +129,7 @@ export default defineComponent({
     const showModal = ref(false)
     const verificationImgCode = ref<string | null>(null)
     const Img = ref<string | undefined>(undefined)
-    const router:any = useRouter();
+    const router: any = useRouter();
     const { state, dispatch } = useStore()
 
     // 验证码弹窗 确认
@@ -262,7 +262,7 @@ export default defineComponent({
         }
       },
       handleValidateButtonClick(e: MouseEvent) {
-        const { channle } = router.currentRoute.value.query
+        const { channel } = router.currentRoute.value.query
         e.preventDefault()
         formRef.value?.validate(async (errors) => {
           if (!errors) {
@@ -274,7 +274,7 @@ export default defineComponent({
                   "name": modelRef.value.phone,
                   "password": modelRef.value.password,
                   "phone": modelRef.value.phone,
-                  "channle": channle
+                  "channel": channel
                 })
               }
 
@@ -295,10 +295,12 @@ export default defineComponent({
               }
 
               message.success(successMsg)
-              // 返回登录页
-              setTimeout(() => {
-                router.push('/login');
-              }, 1000)
+
+              if (res.code === 'success') {
+                loginAfter(res)
+              } else {
+                message.error(res.msg)
+              }
             } catch (e: any) {
               const errorMsg = pageType.value === 'register' ? '注册失败，请检查输入' : '重置密码失败，请检查输入'
               message.error(e.msg || errorMsg)

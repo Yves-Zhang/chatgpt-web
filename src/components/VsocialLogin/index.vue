@@ -49,11 +49,11 @@ export default {
 
     async function login() {
       const stateParams = JSON.parse(state)
-      const { channle: _channle } = stateParams
+      const { channel: _channel } = stateParams
 
       const res: any = await wxLogin_http({
         wxCode: code,
-        channle: _channle
+        channel: _channel
       });
 
       if (res.code === 'success') {
