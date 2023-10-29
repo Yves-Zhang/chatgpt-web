@@ -58,7 +58,9 @@ export default {
 
       if (res.code === 'success') {
         message.success('登录成功');
-        loginAfter(res);
+        setTimeout(() => {
+          loginAfter(res);
+        }, 1000);
       } else {
         message.error(res.msg || '登录失败');
       }
